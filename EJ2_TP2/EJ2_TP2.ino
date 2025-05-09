@@ -111,12 +111,15 @@ void loop() {
 
       case SUMAR:
         {
+          if (digitalRead(BOTON2)==LOW){
+            estado = ESPERA2;
+          }
           if (digitalRead(BOTON1) == HIGH) {
             gmt++;
               if (gmt > 12) {  
                 gmt=-12;
-                TiempoGMT();
             }
+            TiempoGMT();
             estado = P2;
           }
         }
@@ -124,12 +127,15 @@ void loop() {
 
       case RESTAR:
         {
+          if (digitalRead(BOTON1)==LOW){
+            estado = ESPERA2;
+          }
           if (digitalRead(BOTON2) == HIGH) {
             gmt--;
             if (gmt < -12) {
               gmt=12;
-              TiempoGMT();
             }
+            TiempoGMT();
             estado = P2;
           }
         }
@@ -157,6 +163,8 @@ void printBMP_OLED(void) {
   char stringtemp[10];
   char horaStr[10];
   char minStr[10];
+  
+  getLocalTime(&tiempo);
   int horaActual = tiempo.tm_hour;
   int minutoActual = tiempo.tm_min;
   

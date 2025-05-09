@@ -100,7 +100,9 @@ void loop() {
 
       case HORAS:
         {
-
+          if (digitalRead(BOTON2)==LOW){
+            estado = ESPERA2;
+          }
           if (digitalRead(BOTON1) == HIGH) {
             hora = hora + 1;
             if (hora == 24) {
@@ -115,6 +117,9 @@ void loop() {
 
       case MINUTOS:
         {
+          if (digitalRead(BOTON1)==LOW){
+            estado = ESPERA2;
+          }
           if (digitalRead(BOTON2) == HIGH) {
             minuto = minuto + 1;
             if (minuto == 60) {
